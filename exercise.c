@@ -26,10 +26,9 @@ void printDrivers(Driver driver[], int count)
 int main()
 {
     int number_of_drivers = 0;
-    printf("Please enter total numbers of drivers : \n");
+    printf("Please enter total numbers of drivers :  (Enter 1 for convience)\n");
     scanf("%d", &number_of_drivers);
-    int max_drivers = 3;
-    Driver drivers[max_drivers];
+    Driver drivers[number_of_drivers];
 
     // Using scanf to take string input [ By this person can't enter his full name  eg. Sanmeet Singh ]
 
