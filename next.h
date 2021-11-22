@@ -1,3 +1,8 @@
+/*
+**  Author : Sanmeet Singh
+**  C library : Next.h 
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,26 +16,47 @@
 #define Boolean(x) ((int)x != 0 ? true : false)
 #define len(x) (sizeof x) / (sizeof(*x))
 
+// Returns 1 (true) if the string includes the substring or else  returns 0 (false)
 int includes(char *string, char *substring);
+// Returns an array of indexes ( int ) all of the matching character in a string
 int *indicesOf(char string[], char ch);
+// Returns ocurrance (int) of a character in a string
 int charFrequency(char string[], char ch);
+// Returns ocurrance (int) of a substring in a string
 int frequency(char *string, char *substring);
+// Returns a string with replaced character (only once)
 char *replaceChar(char *string, char replaceChar, char withChar);
+// Returns a string with all replaced characters
 char *replaceAllChar(char *string, char replaceChar, char withChar);
+// Prints array of integer ending with a null character ('\0')
 void print_r_int(int *array);
+// Returns first index (int) of character in a string
 int firstIndexOfChar(char string[], char ch);
+// Returns last index (int) of character in a string
 int lastIndexOfChar(char string[], char ch);
+// Check wether a charcter is an integer. eg : '1' is an integer char
 int isInt(char ch);
+//  Returns integer from a character. eg '1' will return 1 (int)
 unsigned int charToInteger(char ch);
+// Returns a substring or chunk of string
 char *substr(char *string, int from, int to);
+// Returns a string with removed spaces from right side of a string
 char *rtrim(char *string);
+// Returns a string with removed spaces from left side of a string
 char *ltrim(char *string);
+// Returns a string with removed spaces
 char *trim(char *string);
+// Returns a string with replaced substring (once)
 char *replace(char *string, char *substring, char *with);
+// Returns a string with all replaced substring
 char *replaceAll(char *string, char *replaceStr, char *withStr);
+// Returns an array of strings with last index as a null character ('\0')
 char **explode(char string[], char ch);
+// Prints an array of the string with last index as a null character ('\0')
 void print_r_str(char **array);
+// Returns current seconds (s) , minutes (m) or hours (h) based on the argument passed
 int currentTime(char type);
+// Returns the index of the substring in a string
 int indexOf(char *string, char *substring);
 
 int includes(char *string, char *substring)
