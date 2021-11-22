@@ -1,6 +1,6 @@
 /*
 **  Author : Sanmeet Singh
-**  C library : Next.h 
+**  C library : next.h 
 */
 
 #include <stdio.h>
@@ -58,17 +58,20 @@ void print_r_str(char **array);
 int currentTime(char type);
 // Returns the index of the substring in a string
 int indexOf(char *string, char *substring);
+// Returns the length of array of strings
+int strArrLen(char **array);
+// Appends a string to an array of strings
+void push_str(char **array, char *string);
+// Pops or deletes last element of array of strings
+void pop_str(char **array);
+// Deletes the index from an array of strings using index
+void del_strByIndex(char **array, int index);
+// Deletes the index from an array of strings using value
+void del_str(char **array, char *string);
 
 int includes(char *string, char *substring)
 {
-    if (strstr(string, substring))
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return strstr(string, substring) ? true : false;
 }
 char *rtrim(char *string)
 {
@@ -247,15 +250,6 @@ char *substr(char *string, int from, int to)
     *(subString + start) = '\0';
     return subString;
 }
-void print_r_int(int *array)
-{
-    int i = 0;
-    while (array[i] != '\0')
-    {
-        printf("%d \n", array[i]);
-        i++;
-    }
-}
 int lastIndexOfChar(char string[], char ch)
 {
     int index = 0;
@@ -321,7 +315,7 @@ int charFrequency(char string[], char ch)
 void print_r_str(char **array)
 {
     int i = 0;
-    while (*array[i] != '\0')
+    while (*(array + i))
     {
         printf("%s\n", array[i]);
         i++;
@@ -381,6 +375,54 @@ int indexOf(char *string, char *substring)
     int i = 0;
     i = strstr(string, substring) - string;
     return i;
+}
+int strArrLen(char **array)
+{
+    int i = 0;
+    while (*array)
+    {
+        i++;
+        *array++;
+    }
+    return i;
+}
+void push_str(char **array, char *string)
+{
+    int arrayLength = strArrLen(array);
+    *(array + arrayLength) = string;
+    array[++arrayLength] = '\0';
+}
+void pop_str(char **array)
+{
+    int length = strArrLen(array);
+    *(array + (--length)) = '\0';
+}
+void del_strByIndex(char **array, int index)
+{
+    int i = index;
+    while (*(array + i))
+    {
+        *(array + i) = *(array + i + 1);
+        i++;
+    }
+}
+void del_str(char **array, char *string)
+{
+    int length = strArrLen(array);
+    int i = 0;
+    int index = -1;
+    while (i < length)
+    {
+        if (array[i] == string)
+        {
+            index = i;
+        }
+        i++;
+    }
+    if (index != -1)
+    {
+        del_strByIndex(array, index);
+    }
 }
 
 #endif
