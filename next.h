@@ -28,8 +28,6 @@ int frequency(char *string, char *substring);
 char *replaceChar(char *string, char replaceChar, char withChar);
 // Returns a string with all replaced characters
 char *replaceAllChar(char *string, char replaceChar, char withChar);
-// Prints array of integer ending with a null character ('\0')
-void print_r_int(int *array);
 // Returns first index (int) of character in a string
 int firstIndexOfChar(char string[], char ch);
 // Returns last index (int) of character in a string
