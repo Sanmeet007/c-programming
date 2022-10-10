@@ -323,7 +323,7 @@ void print_r_str(string *array)
         printf("'%s',", array[i]);
         i++;
     }
-    printf("'\\0']");
+    printf("'\\0']\n");
 }
 string *split(char _str[], char ch)
 {
