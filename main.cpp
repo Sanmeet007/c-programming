@@ -16,6 +16,7 @@ void handler(int index, string x)
 int main(int argc, char const *argv[])
 {
     auto *li = new List<string>();
+    li->length();
     li->push("hi");
     li->push("hi 1");
     li->push("hi 2");

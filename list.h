@@ -58,11 +58,66 @@ class List
     Node<T> *start = NULL;
 
 public:
+    // Returns the length of the list based on operations performed.
     size_t length()
     {
         return len;
     }
-    // Returns item at a specific index
+
+    // Returns the size of list
+    size_t size()
+    {
+        Node<T> *ptr = start;
+        size_t length = 0;
+        while (ptr != NULL)
+        {
+            ptr = ptr->link;
+            length++;
+        }
+        return length;
+    }
+
+    // Returns true if list is empty
+    bool is_empty()
+    {
+        return (start == NULL);
+    }
+
+    // Returns true if the value is found in list
+    bool includes(T data)
+    {
+        Node<T> *ptr = start;
+        while (ptr != NULL)
+        {
+            if (ptr->data == data)
+                return true;
+            ptr = ptr->link;
+        }
+        return false;
+    }
+
+    // Retuns the item at specified index
+    T operator[](int index)
+    {
+        Node<T> *ptr = start;
+        size_t i = 0;
+        while (ptr != NULL)
+        {
+            if (i == index)
+                break;
+            ptr = ptr->link;
+            i++;
+        }
+
+        if (ptr != NULL)
+        {
+            return ptr->data;
+        }
+        else
+            throw ListRangeError();
+    }
+
+    // Returns item at a specified index
     T item_at(int index)
     {
         Node<T> *ptr = start;
@@ -83,25 +138,38 @@ public:
             throw ListRangeError();
     }
 
-    T operator[](int index)
+    // Prints all values present the list
+    void print_values()
     {
         Node<T> *ptr = start;
+        if (start == NULL)
+        {
+            cout << empty_error << std::endl;
+            return;
+        }
         size_t i = 0;
+        cout << "--------------"
+             << " List Items "
+             << "--------------"
+             << std::endl;
+
         while (ptr != NULL)
         {
-            if (i == index)
-                break;
+            cout
+                << i
+                << " : "
+                << ptr->data
+                << std::endl;
             ptr = ptr->link;
             i++;
         }
 
-        if (ptr != NULL)
-        {
-            return ptr->data;
-        }
-        else
-            throw ListRangeError();
+        cout << std::endl
+             << "Total items : "
+             << i
+             << std::endl;
     }
+
     // Pushes a new node at the back of the list
     void push(T data)
     {
@@ -121,6 +189,38 @@ public:
             start = new_node;
             len++;
             return;
+        }
+    }
+
+    // Inserts value at a specified index
+    void insert_at(size_t index, T data)
+    {
+        if (index > length())
+            throw ListRangeError();
+
+        size_t i = 0;
+        Node<T> *temp = new Node<T>(data);
+        Node<T> *ptr = start;
+        if (start == NULL)
+        {
+            start = temp;
+        }
+        if (index == 0)
+        {
+            temp->link = start->link;
+            start->link = temp;
+            return;
+        }
+        while (ptr != NULL)
+        {
+            if (i == (index - 1))
+            {
+                temp->link = ptr->link;
+                ptr->link = temp;
+                return;
+            }
+            ptr = ptr->link;
+            i++;
         }
     }
 
@@ -186,85 +286,6 @@ public:
         }
     }
 
-    // Returns the size of list
-    size_t size()
-    {
-        Node<T> *ptr = start;
-        size_t length = 0;
-        while (ptr != NULL)
-        {
-            ptr = ptr->link;
-            length++;
-        }
-        return length;
-    }
-
-    // Returns true if list is empty
-    bool is_empty()
-    {
-        return (start == NULL);
-    }
-
-    // Returns the index of item if present in the list
-    signed long int index_of(T data)
-    {
-        signed long int index = 0;
-        Node<T> *ptr = start;
-        while (ptr != NULL)
-        {
-            if (ptr->data == data)
-                return index;
-            ptr = ptr->link;
-            index++;
-        }
-        return -1;
-    }
-
-    // Returns true if the value is found in list
-    bool includes(T data)
-    {
-        Node<T> *ptr = start;
-        while (ptr != NULL)
-        {
-            if (ptr->data == data)
-                return true;
-            ptr = ptr->link;
-        }
-        return false;
-    }
-
-    // Inserts value at a specified index
-    void insert_at(size_t index, T data)
-    {
-        if (index > length())
-            throw ListRangeError();
-
-        size_t i = 0;
-        Node<T> *temp = new Node<T>(data);
-        Node<T> *ptr = start;
-        if (start == NULL)
-        {
-            start = temp;
-        }
-        if (index == 0)
-        {
-            temp->link = start->link;
-            start->link = temp;
-            return;
-        }
-        while (ptr != NULL)
-        {
-            if (i == (index - 1))
-            {
-                temp->link = ptr->link;
-                ptr->link = temp;
-                return;
-            }
-            ptr = ptr->link;
-            i++;
-        }
-    }
-
     // Removes element at specific index
     void remove_at(size_t index)
     {
@@ -309,6 +330,7 @@ public:
         }
     }
 
+    // Updates the value at specified index
     void update(size_t index, T data)
     {
         size_t i = 0;
@@ -327,41 +349,21 @@ public:
             i++;
         }
     }
-    // Prints all values present the list
-    void print_values()
-    {
-        Node<T> *ptr = start;
-        if (start == NULL)
-        {
-            cout << empty_error << std::endl;
-            return;
-        }
-        size_t i = 0;
-        cout << "--------------"
-             << " List Items "
-             << "--------------"
-             << std::endl;
 
+    // Returns the index of item if present in the list
+    signed long int index_of(T data)
+    {
+        signed long int index = 0;
+        Node<T> *ptr = start;
         while (ptr != NULL)
         {
-            cout
-                << i
-                << " : "
-                << ptr->data
-                << std::endl;
+            if (ptr->data == data)
+                return index;
             ptr = ptr->link;
-            i++;
+            index++;
         }
-
-        cout << std::endl
-             << "Total items : "
-             << i
-             << std::endl;
+        return -1;
     }
-
-    /**
-     * High order functions
-     */
 
     // Callback param provides each value present in list with index
     void each(const std::function<void(int, T)> &cb)
