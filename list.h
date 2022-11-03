@@ -224,6 +224,21 @@ public:
         }
     }
 
+    // Prepends the data in list at first index
+    void prepend(T data)
+    {
+        Node<T> *ptr = start;
+        Node<T> *temp = new Node<T>(data);
+        if (start == NULL)
+            start = temp;
+        else
+        {
+            temp->link = start;
+            start = temp;
+        }
+        len++;
+    }
+
     // Removes the last element in the lists
     T pop()
     {
@@ -260,7 +275,7 @@ public:
         return data;
     }
 
-    // Removes element at specific index
+    // Removes element by matching data value
     void remove(T data)
     {
         Node<T> *ptr = start;
@@ -330,6 +345,20 @@ public:
         }
     }
 
+    // Removes all the items in the list or empties the list
+    void empty()
+    {
+        Node<T> *ptr = start;
+        while (ptr != NULL)
+        {
+            Node<T> *del_ptr = ptr;
+            ptr = ptr->link;
+            delete del_ptr;
+        }
+        start = NULL;
+        len = 0;
+    }
+
     // Updates the value at specified index
     void update(size_t index, T data)
     {
@@ -374,6 +403,7 @@ public:
         {
             cb(i, ptr->data);
             ptr = ptr->link;
+            i++;
         }
         return;
     }
@@ -412,8 +442,9 @@ public:
         Node<T> *ptr = start;
         while (ptr != NULL)
         {
-            li->push(func(i, ptr->data));
+            li->push(cb(i, ptr->data));
             ptr = ptr->link;
+            i++;
         }
         return li;
     }
@@ -429,6 +460,7 @@ public:
             if (cb(i, ptr->data))
                 li->push(ptr->data);
             ptr = ptr->link;
+            i++;
         }
         return li;
     }

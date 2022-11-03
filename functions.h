@@ -32,6 +32,19 @@ char input_char(string prompt)
     return inputChar;
 }
 
+// Lower case the string
+
+string str_lower(string str)
+{
+    return "lower";
+}
+
+// Upper case the string
+string str_upper(string str)
+{
+    return "UPPPER";
+}
+
 // Checks if file exists or not
 bool file_exist(string name)
 {
