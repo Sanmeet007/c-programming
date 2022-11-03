@@ -2,8 +2,6 @@
 #define FUNCTIONS_HEADER_FILE
 
 #include <iostream>
-#include <vector>
-#include <array>
 #include <string>
 #include <fstream>
 #include <conio.h>
