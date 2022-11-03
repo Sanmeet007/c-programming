@@ -20,6 +20,7 @@ string input(string prompt)
     getline(cin, inputStr);
     return inputStr;
 }
+
 // Returns input char
 char input_char(string prompt)
 {
@@ -151,21 +152,26 @@ std::vector<string> string_split(string str, char delimiter)
     return splitted_string_vector;
 }
 
+// Prints to console
 template <typename T>
 void print(T str)
 {
     cout << str << std::endl;
 }
+
+// Prints character only
 void cprint(char ch)
 {
     cout << "'" << ch << "'";
 }
 
+// Clear's console output
 void clearscr()
 {
     system("cls");
 }
 
+// Returns true if the string contains only interger
 bool isint(string str)
 {
     for (char x : str)
