@@ -138,6 +138,7 @@ public:
         {
             start = NULL;
             data = ptr->data;
+            delete ptr->link;
             ptr->link = NULL;
 
             len--;
@@ -153,6 +154,7 @@ public:
         }
 
         data = ptr->data;
+        delete ptr->link;
         ptr->link = NULL;
         len--;
         return data;
@@ -167,7 +169,8 @@ public:
 
         if (start->data == data)
         {
-            start = start->link;
+            start = ptr->link;
+            delete ptr;
             len--;
             return;
         }
@@ -278,11 +281,13 @@ public:
         {
             if (start->link == NULL)
             {
+                delete start;
                 start = NULL;
             }
             else
             {
-                start = start->link;
+                start = ptr->link;
+                delete ptr;
             }
             len--;
             return;
@@ -292,7 +297,10 @@ public:
         {
             if ((curr_indx + 1) == index)
             {
+                Node<T> *del_ptr;
+                del_ptr = ptr->link;
                 ptr->link = ptr->link->link;
+                delete del_ptr;
                 len--;
                 return;
             }

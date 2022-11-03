@@ -17,8 +17,10 @@ int main(int argc, char const *argv[])
 {
     auto *li = new List<string>();
     li->push("hi");
+    li->push("hi 1");
     li->push("hi 2");
-    li->insert_at(1, "hello");
+    li->remove_at(1);
+    li->push("h");
     li->print_values();
     return 0;
 }
