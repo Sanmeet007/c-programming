@@ -36,13 +36,21 @@ char input_char(string prompt)
 
 string str_lower(string str)
 {
-    return "lower";
+    for (char &x : str)
+    {
+        x = tolower(x);
+    }
+    return str;
 }
 
 // Upper case the string
 string str_upper(string str)
 {
-    return "UPPPER";
+    for (char &x : str)
+    {
+        x = toupper(x);
+    }
+    return str;
 }
 
 // Checks if file exists or not
