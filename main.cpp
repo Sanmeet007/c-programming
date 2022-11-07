@@ -16,7 +16,7 @@ void handler(int index, string x)
 int main(int argc, char const *argv[])
 {
     //
-    auto li = List<std::variant<char, string, long, float, int, double, long long>>();
+    auto li = List<string>();
     li.push("ONE");
     li.push("TWO");
     li.push("THREE");
