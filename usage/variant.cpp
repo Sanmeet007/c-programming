@@ -1,8 +1,6 @@
 #include <iostream>
 #include <variant>
-#include <vector>
-#include <array>
-#include "../variant_list.h"
+#include "../library/variant_list.h"
 
 using std::cin;
 using std::cout;

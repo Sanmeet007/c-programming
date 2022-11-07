@@ -1,8 +1,8 @@
-#include "../headers/list.h"
+#include "../library/list.h"
 
 int main(int argc, char const *argv[])
 {
-    List *li = new List;
+    List<string> *li = new List<string>();
     li->push("hello");
     li->pop();
     li->push("hello word");
