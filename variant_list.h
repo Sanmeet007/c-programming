@@ -16,6 +16,14 @@ const string empty_error = "LIST IS EMPTY";
 const string range_error = "RANGE ERROR";
 const string item_notpresent = "ITEM NOT PRESENT IN LIST";
 
+template <class... Ts>
+struct overloaded : Ts...
+{
+    using Ts::operator()...;
+};
+template <class... Ts>
+overloaded(Ts...) -> overloaded<Ts...>;
+
 class ListUnderflow : public std::exception
 {
 public:
