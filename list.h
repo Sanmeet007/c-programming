@@ -155,11 +155,10 @@ public:
 
         while (ptr != NULL)
         {
-            cout
-                << i
-                << " : "
-                << ptr->data
-                << std::endl;
+            cout << i
+                 << " : "
+                 << ptr->data
+                 << std::endl;
             ptr = ptr->link;
             i++;
         }

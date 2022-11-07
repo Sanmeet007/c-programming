@@ -1,4 +1,5 @@
 #include <iostream>
+#include <variant>
 #include "list.h"
 #include "range.h"
 #include "functions.h"
@@ -14,7 +15,8 @@ void handler(int index, string x)
 
 int main(int argc, char const *argv[])
 {
-    auto li = List<string>();
+    //
+    auto li = List<std::variant<char, string, long, float, int, double, long long>>();
     li.push("ONE");
     li.push("TWO");
     li.push("THREE");
