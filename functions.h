@@ -128,30 +128,6 @@ signed int str_freq(string str, string substr)
     return occurrences;
 }
 
-// Splits the string and returns a vector ... based on delimiter char
-std::vector<string> string_split(string str, char delimiter)
-{
-    std::vector<string> splitted_string_vector;
-    string sub;
-    size_t found;
-    while (true)
-    {
-        found = str.find(delimiter);
-        if (found == string::npos)
-        {
-            splitted_string_vector.push_back(str);
-            break;
-        }
-        else
-        {
-            sub = str.substr(0, found);
-            str = str.substr(found + 1, str.size());
-            splitted_string_vector.push_back(sub);
-        }
-    }
-    return splitted_string_vector;
-}
-
 // Prints to console
 template <typename T>
 void print(T str)
