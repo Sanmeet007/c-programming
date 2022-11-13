@@ -130,9 +130,9 @@ signed int str_freq(string str, string substr)
 
 // Prints to console
 template <typename T>
-void print(T str)
+void print(T str, char end = '\n')
 {
-    cout << str << std::endl;
+    cout << str << end;
 }
 
 // Prints character only
